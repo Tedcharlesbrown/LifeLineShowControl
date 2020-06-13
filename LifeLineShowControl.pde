@@ -132,7 +132,7 @@ void GUI() {
   text(clock, width / 2, height - 45);
   //TCB INFO
   textSize(15);
-  text("Lifeline v.1.1 || Tedcharlesbrown.com || Tedcharlesbrown@gmail.com", width / 2, height - 15);
+  text("Lifeline v.1.2 || Tedcharlesbrown.com || Tedcharlesbrown@gmail.com", width / 2, height - 15);
   //TCB LOGO
   tint(255);
   image(logo, width - 35, height - 30, 60, 60);
