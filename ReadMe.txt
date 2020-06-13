@@ -1,4 +1,4 @@
-LIFELINE SHOW CONTROL V.1.1 - TED CHARLES BROWN - TEDCHARLESBROWN.COM
+LIFELINE SHOW CONTROL V.1.2 - TED CHARLES BROWN - TEDCHARLESBROWN.COM
 
 ---ABOUT THIS APPLICATION---
 On shows I would find I would be constantly opening up the command prompt in order to ping different computers.
