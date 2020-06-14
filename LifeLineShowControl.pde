@@ -17,11 +17,13 @@ void setup() {
     heart.add(new heartContainer(i));
     heart.get(i).heartInit();
   }
-  for (int i = 0; i < 2; i++) {
+  for (int i = 0; i < 4; i++) {
     IPField.add(new userInputField(this, i));
   }
-  IPField.get(0).newTextField(200, 40);
-  IPField.get(1).newTextField(200, 100);
+  IPField.get(0).newTextField(10, 80);
+  IPField.get(1).newTextField(110, 80);
+  IPField.get(2).newTextField(210, 80);
+  IPField.get(3).newTextField(310, 80);
 }
 
 void draw() {
