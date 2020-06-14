@@ -1,6 +1,9 @@
 class networkPing {
   String IP;
-  networkPing() {
+  int index;
+  
+  networkPing(int tempIndex) {
+    this.index = tempIndex;
   }
 
   void sendPing(String tempIP) {
@@ -14,8 +17,7 @@ class networkPing {
         } else {
           println(this.IP + " NOT reachable.");
         }
-      }
-      catch (Exception e) {
+      } catch (Exception e) {
         System.out.println("Exception:" + e.getMessage());
       }
     }

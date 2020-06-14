@@ -1,58 +1,40 @@
 import java.net.*;
 
-networkPing ping = new networkPing();
+ArrayList<heartContainer> heart = new ArrayList<heartContainer>();
+ArrayList<networkPing> ping = new ArrayList<networkPing>();
 
-PShape heart;
+//networkPing ping = new networkPing();
+//heartContainer heart = new heartContainer();
 
 String IP;
 int variableTimer = 5;
 int stopwatch;
 
-float heartSize = 300;
-float heartScale = 0.25;
-
-int Width, Height;
-
 void setup() {
   size(400, 400);
-  Width = width;
-  Height = height;
-  surface.setResizable(true);
   stopwatch = millis();
-  heartInit();
-  registerMethod("pre", this);
-}
-
-void pre() {
-  if (Width != width || Height != height) {
-    Width = width;
-    Height = height;
-    windowResized();
+  for (int i = 0; i < 16; i++) {
+    heart.add(new heartContainer(i));
+    heart.get(i).heartInit();
   }
 }
 
 void draw() {
   background(100);
   timer();
-  heartDraw();
-  println(heartSize);
-}
-
-void heartInit() {
-  heart = loadShape("heart.svg");
-  heart.scale(heartScale);
-  heartScale = 1 - heartScale;
-  heartSize *= heartScale;
-}
-
-void heartReDraw() {
-  
-}
-
-void heartDraw() {
-  shapeMode(CENTER);
-  translate(50, 50);
-  shape(heart, heartSize / 2, heartSize / 2);
+  int i = 0;
+  for (int y = 35; y < height - 10; y += 90) {
+    for (int x = 50; x < width; x += 100) {
+      heart.get(i).heartDraw(x , y);
+      fill(0);
+      textAlign(CENTER,CENTER);
+      textSize(15);
+      text("EMPTY", x, y + 35);
+      textSize(10);
+      text("192.168.0.20", x, y + 50);
+      i++;
+    }
+  }
 }
 
 void timer() {
@@ -60,8 +42,4 @@ void timer() {
     stopwatch += 5000;
     //ping.sendPing("192.168.0.20");
   }
-}
-
-void windowResized() {
-  heartReDraw();
 }
