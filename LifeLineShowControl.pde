@@ -1,10 +1,10 @@
 import java.net.*;
+import controlP5.*;
+
 
 ArrayList<heartContainer> heart = new ArrayList<heartContainer>();
 ArrayList<networkPing> ping = new ArrayList<networkPing>();
-
-//networkPing ping = new networkPing();
-//heartContainer heart = new heartContainer();
+ArrayList<userInputField> IPField = new ArrayList<userInputField>();
 
 String IP;
 int variableTimer = 5;
@@ -17,6 +17,11 @@ void setup() {
     heart.add(new heartContainer(i));
     heart.get(i).heartInit();
   }
+  for (int i = 0; i < 2; i++) {
+    IPField.add(new userInputField(this, i));
+  }
+  IPField.get(0).newTextField(200, 40);
+  IPField.get(1).newTextField(200, 100);
 }
 
 void draw() {
@@ -27,7 +32,7 @@ void draw() {
     for (int x = 50; x < width; x += 100) {
       heart.get(i).heartDraw(x , y);
       fill(0);
-      textAlign(CENTER,CENTER);
+      textAlign(CENTER, CENTER);
       textSize(15);
       text("EMPTY", x, y + 35);
       textSize(10);
@@ -41,5 +46,14 @@ void timer() {
   if (millis() > stopwatch) {
     stopwatch += 5000;
     //ping.sendPing("192.168.0.20");
+  }
+}
+
+void controlEvent(ControlEvent theEvent) {
+  if (theEvent.isAssignableFrom(Textfield.class)) {
+    println(theEvent.getName()+": "+theEvent.getStringValue());
+    if (theEvent.getName().equals("0")) {
+      IPField.get(0).text = theEvent.getStringValue();
+    }
   }
 }
