@@ -4,26 +4,36 @@ import controlP5.*;
 
 ArrayList<heartContainer> heart = new ArrayList<heartContainer>();
 ArrayList<networkPing> ping = new ArrayList<networkPing>();
+ArrayList<userInputField> IDField = new ArrayList<userInputField>();
 ArrayList<userInputField> IPField = new ArrayList<userInputField>();
 
 String IP;
 int variableTimer = 5;
 int stopwatch;
+int hearts = 16;
+
+String IP0,ID0;
 
 void setup() {
   size(400, 400);
-  stopwatch = millis();
-  for (int i = 0; i < 16; i++) {
+  pixelDensity(displayDensity());
+  ;  stopwatch = millis();
+  for (int i = 0; i < hearts; i++) {
     heart.add(new heartContainer(i));
     heart.get(i).heartInit();
   }
-  for (int i = 0; i < 4; i++) {
-    IPField.add(new userInputField(this, i));
+  for (int i = 0; i < hearts; i++) {
+    IDField.add(new userInputField(this, i, "ID"));
+    IPField.add(new userInputField(this, i, "IP"));
   }
-  IPField.get(0).newTextField(10, 80);
-  IPField.get(1).newTextField(110, 80);
-  IPField.get(2).newTextField(210, 80);
-  IPField.get(3).newTextField(310, 80);
+  int i = 0;
+  for (int y = 80; y < height - 10; y += 90) {
+    for (int x = 10; x < width; x += 100) {
+      IDField.get(i).newTextField(x, y - 15);
+      IPField.get(i).newTextField(x, y);
+      i++;
+    }
+  }
 }
 
 void draw() {
@@ -33,12 +43,6 @@ void draw() {
   for (int y = 35; y < height - 10; y += 90) {
     for (int x = 50; x < width; x += 100) {
       heart.get(i).heartDraw(x , y);
-      fill(0);
-      textAlign(CENTER, CENTER);
-      textSize(15);
-      text("EMPTY", x, y + 35);
-      textSize(10);
-      text("192.168.0.20", x, y + 50);
       i++;
     }
   }
@@ -53,9 +57,13 @@ void timer() {
 
 void controlEvent(ControlEvent theEvent) {
   if (theEvent.isAssignableFrom(Textfield.class)) {
-    println(theEvent.getName()+": "+theEvent.getStringValue());
-    if (theEvent.getName().equals("0")) {
-      IPField.get(0).text = theEvent.getStringValue();
+    println(theEvent.getName().equals("ID:0"));
+    //println(theEvent.getName() + " = " + theEvent.getStringValue());
+    for (int i = 0; i < hearts; i++) {
+      if (theEvent.getName().equals(str(i))) {
+        IDField.get(i).text = theEvent.getStringValue();
+        IPField.get(i).text = theEvent.getStringValue();
+      }
     }
   }
 }
