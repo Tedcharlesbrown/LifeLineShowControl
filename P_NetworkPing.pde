@@ -1,25 +1,41 @@
 class networkPing {
   String IP;
   int index;
-  
+  int variableTimer = 5;
+  int stopwatch;
+
   networkPing(int tempIndex) {
+    stopwatch = millis();
     this.index = tempIndex;
+    this.IP = "";
   }
 
-  void sendPing(String tempIP) {
+  void send() {
     int timeOut = int(map(frameRate, 0, 60, variableTimer * 1000, 1000));
-    this.IP = tempIP;
-    if (this.IP != "EMPTY" && this.IP != "") {
-      try {
-        InetAddress inet = InetAddress.getByName(this.IP);
-        if (inet.isReachable(timeOut)) {
-          println(this.IP + " is reachable.");
-        } else {
-          println(this.IP + " NOT reachable.");
-        }
-      } catch (Exception e) {
-        System.out.println("Exception:" + e.getMessage());
+    try {
+      InetAddress inet = InetAddress.getByName(this.IP);
+      if (inet.isReachable(timeOut)) {
+        heart.get(this.index).reachable = 2;
+        //println("From: " + this.index + ", " + this.IP + " is reachable.");
+      } else {
+        heart.get(this.index).reachable = 1;
+        //println("From: " + this.index + ", " + this.IP + " NOT  reachable.");
       }
+    } catch (Exception e) {
+      System.out.println("Exception:" + e.getMessage());
+    }
+  }
+
+  void request(String tempIP) {
+    if (this.IP != "IP ADDRESS") {
+      this.IP = tempIP;
+    }
+  }
+
+  void timer() {
+    if (millis() > stopwatch) {
+      stopwatch += 5000;
+      send();
     }
   }
 }
