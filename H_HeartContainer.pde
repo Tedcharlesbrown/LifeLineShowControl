@@ -1,6 +1,6 @@
 class heartContainer {
 
-	PImage heartIMG;
+	PImage heartIMG, heartBGIMG;
 	int size = 60;
 	float x, y;
 	int index;
