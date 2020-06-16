@@ -2,7 +2,7 @@ class settingsClass {
 	Table table;
 
 	settingsClass() {
-		table = loadTable("settings.csv", "header");
+		table = loadTable("LifeLineSettings.csv", "header");
 		try {
 			for (int i = 0; i < table.getRowCount(); i++) {
 				TableRow row = table.getRow(i);
@@ -10,7 +10,6 @@ class settingsClass {
 				ipField.get(i).userIP = row.getString("IP");
 				ping.get(i).variableTimer = row.getInt("TIME");
 			}
-			println(table.getRowCount() + " total rows in table");
 		} catch (NullPointerException e) {
 			table = new Table();
 			table.addColumn("NAME");
@@ -31,8 +30,7 @@ class settingsClass {
 			table.setString(i, "NAME", idField.get(i).userID);
 			table.setString(i, "IP", ipField.get(i).userIP);
 		}
-		println("flushing");
-		saveTable(table, "settings.csv");
+		saveTable(table, "LifeLineSettings.csv");
 	}
 
 	void keyPressed() {

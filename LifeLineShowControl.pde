@@ -8,6 +8,11 @@ ArrayList<userInputField> ipField = new ArrayList<userInputField>();
 ArrayList<userInputField> idField = new ArrayList<userInputField>();
 
 settingsClass settings;
+guiClass gui;
+
+boolean pauseTimer = false;
+
+boolean startUp = false;
 
 String IP;
 int hearts = 16;
@@ -15,6 +20,7 @@ int hearts = 16;
 void setup() {
   size(400, 400);
   frameRate(60);
+  gui = new guiClass();
   for (int i = 0; i < hearts; i++) {
     heart.add(new heartContainer(i));
     ping.add(new networkPing(i));
@@ -29,20 +35,23 @@ void setup() {
 }
 
 void draw() {
-  background(100);
-  int i = 0;
-  for (int y = 35; y < height - 10; y += 90) {
-    for (int x = 50; x < width; x += 100) {
-      heart.get(i).heartDraw(x , y);
-      idField.get(i).fieldDraw(x, y - 14);
-      ipField.get(i).fieldDraw(x, y + 1);
-      ping.get(i).timer();
-      i++;
+  gui.draw();
+  if (startUp) {
+    int i = 0;
+    for (int y = 35; y < height - 10; y += 90) {
+      for (int x = 50; x < width; x += 100) {
+        heart.get(i).heartDraw(x , y);
+        idField.get(i).fieldDraw(x, y - 14);
+        ipField.get(i).fieldDraw(x, y + 1);
+        ping.get(i).timer();
+        i++;
+      }
     }
   }
-  fill(0);
-  rect(width / 2, 400, width, 70);
+  if (!startUp) {startUp = true;}
 }
+
+
 
 void mousePressed() {
   for (int i = 0; i < hearts; i++) {

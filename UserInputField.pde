@@ -32,6 +32,7 @@ class userInputField {
 	void fieldText() {
 		textSize(10);
 		textAlign(CENTER, CENTER);
+		fill(0);
 		if (this.name == "ID") {
 			if ((!this.clicked) && this.userID.length() == 0) {
 				text("NAME", this.x, this.y - 1);
@@ -48,9 +49,12 @@ class userInputField {
 	}
 
 	void fieldClicked() {
-		if (dist(mouseX, this.y, this.x, this.y) < 90 / 2) {
-			if (dist(this.x, mouseY, this.x, this.y) < 15 / 2) {
-				this.clicked = true;
+		if (!pauseTimer) {
+			if (dist(mouseX, this.y, this.x, this.y) < 90 / 2) {
+				if (dist(this.x, mouseY, this.x, this.y) < 15 / 2) {
+					this.clicked = true;
+					pauseTimer = true;
+				}
 			}
 		}
 	}
@@ -70,11 +74,12 @@ class userInputField {
 				}
 			} else if (keyCode >= 65 && keyCode <= 90) {
 				this.userID += key;
-			} else if ((keyCode >= 48 && keyCode <= 57) || key == '.') {
+			} else if ((keyCode >= 48 && keyCode <= 57) || (keyCode >= 96 && keyCode <= 105) || key == '.') {
 				this.userID += key;
 				this.userIP += key;
 			} else if (key == ENTER || key == RETURN) {
 				this.clicked = false;
+				pauseTimer = false;
 				ping.get(this.index).request(this.userIP);
 			}
 		}
@@ -84,7 +89,6 @@ class userInputField {
 		this.index = index;
 		if (this.userIP.length() > 0) {
 			ping.get(this.index).request(this.userIP);
-			println(this.index,this.userIP);
 		}
 
 	}

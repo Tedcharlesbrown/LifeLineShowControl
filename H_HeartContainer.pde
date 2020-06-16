@@ -7,13 +7,10 @@ class heartContainer {
 
 	int reachable;
 
-	int tintFade = 0;
-
 	heartContainer(int tempIndex) {
 		this.index = tempIndex;
 		this.reachable = 0;
 	}
-
 
 	void heartInit() {
 		heartIMG = loadImage("heart.png");
@@ -30,11 +27,9 @@ class heartContainer {
 
 	void heartColor() {
 		if (this.reachable == 1) { //FALSE
-			tint(255, 255 - tintFade , 255 - tintFade);
-			tintFade = tintFade + 2;
+			tint(255,0,0);
 		} else if (this.reachable == 2) { //TRUE
-			tint(255 - tintFade, 255, 255 - tintFade);
-			tintFade = tintFade + 2;
+			tint(0,255,0);
 		} else {
 			tint(255);
 		}
