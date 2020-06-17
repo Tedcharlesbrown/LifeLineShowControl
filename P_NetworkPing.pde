@@ -7,22 +7,22 @@ class networkPing {
     stopwatch = millis();
     this.index = tempIndex;
     this.IP = "";
-    this.variableTimer = variableTimer;
   }
 
   void send() {
-    int timeOut = int(map(frameRate, 0, 60, this.variableTimer * 1000, 1000));
+    int timeOut = int(map(frameRate, 0, 60, variableTimer * 1000, 1000));
     if (this.IP.length() > 0) {
       try {
         InetAddress inet = InetAddress.getByName(this.IP);
         if (inet.isReachable(timeOut)) {
           heart.get(this.index).reachable = 2;
-          //println("From: " + this.index + ", " + this.IP + " is reachable.");
+          println("From: " + this.index + ", " + this.IP + " is reachable.");
         } else {
           heart.get(this.index).reachable = 1;
-          //println("From: " + this.index + ", " + this.IP + " NOT reachable.");
+          println("From: " + this.index + ", " + this.IP + " NOT reachable.");
         }
       } catch (Exception e) {
+        heart.get(this.index).reachable = 1;
         System.out.println("Exception:" + e.getMessage());
       }
     }
@@ -36,9 +36,8 @@ class networkPing {
 
   void timer() {
     if (millis() > stopwatch && !pauseTimer && startUp) {
-      stopwatch += this.variableTimer * 1000;
+      stopwatch += variableTimer * 1000;
       send();
-      println("PING");
     }
   }
 }

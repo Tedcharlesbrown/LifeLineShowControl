@@ -1,6 +1,4 @@
 import java.net.*;
-import controlP5.*;
-
 
 ArrayList<heartContainer> heart = new ArrayList<heartContainer>();
 ArrayList<networkPing> ping = new ArrayList<networkPing>();

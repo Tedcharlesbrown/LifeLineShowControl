@@ -1,4 +1,5 @@
 class guiClass {
+
 	guiClass() {
 
 	}
@@ -16,10 +17,10 @@ class guiClass {
 	}
 
 	void timerDraw() {
-		if (startUp) {
+		if (!pauseTimer) {
 			int timerLength = (ping.get(0).variableTimer) * 1000;
 			fill(255);
-			rect(0, height - 35, map(millis() % timerLength, 0, timerLength, -100, width), 35);
+			rect(0, height - 35, map(millis() % timerLength, 0, timerLength, 0, width), 35);
 		}
 	}
 }
