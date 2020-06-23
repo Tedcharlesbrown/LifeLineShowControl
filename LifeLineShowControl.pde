@@ -55,7 +55,7 @@ void mousePressed() {
     idField.get(i).mousePressed();
     ipField.get(i).mousePressed();
   }
-  ping.get(0).find("192.168.0");
+  //ping.get(0).find("192.168.0");
 }
 
 void mouseReleased() {

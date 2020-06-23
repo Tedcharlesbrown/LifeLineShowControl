@@ -11,7 +11,7 @@ class networkPing {
   }
 
   void send() {
-    int timeOut = variableTimer * 1000;
+    int timeOut = 1000;
     if (this.IP.length() > 0) {
       try {
         InetAddress inet = InetAddress.getByName(this.IP);
@@ -30,17 +30,18 @@ class networkPing {
   }
 
   void find(String subnet) {
-    int timeout = 5000;
+    int timeout = 100;
     int found = 0;
     for (int i = 1; i < 255; i++) {
       String host = subnet + "." + i;
       try {
         InetAddress address = InetAddress.getByName(host);
         if (address.isReachable(timeout)) {
-          //ipField.get(found).userIP = host;
+          ipField.get(found).userIP = host;
+          ping.get(found).IP = host;
           println(host + " is reachable " + str(found));
           found++;
-          //println(address.getHostName());
+          println(address.getHostName());
         }
       } catch (Exception e) {
       }
