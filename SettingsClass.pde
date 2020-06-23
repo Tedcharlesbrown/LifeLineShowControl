@@ -8,7 +8,7 @@ class settingsClass {
 				TableRow row = table.getRow(i);
 				idField.get(i).userID = row.getString("NAME");
 				ipField.get(i).userIP = row.getString("IP");
-				//ping.get(i).variableTimer = row.getInt("TIME");
+				ping.get(i).variableTimer = row.getInt("TIME");
 			}
 		} catch (NullPointerException e) {
 			table = new Table();
@@ -20,7 +20,7 @@ class settingsClass {
 				row.setString("IP", "");
 				row.setString("TIME", "");
 				table.setInt(i,"TIME",5);
-				//ping.get(i).variableTimer = 5;
+				ping.get(i).variableTimer = 5;
 			}
 		}
 	}
