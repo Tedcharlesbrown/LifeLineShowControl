@@ -61,9 +61,9 @@ class userInputField {
 
 	void keyPressed() {
 		if (this.clicked) {
-			if (key == BACKSPACE || key == DELETE) {
+			if (key == BACKSPACE || keyCode == 8) {
 				if (this.userID.length() == 0) {
-					return;
+					//return;
 				} else {
 					this.userID = this.userID.substring(0, this.userID.length() - 1);
 				}

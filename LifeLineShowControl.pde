@@ -10,8 +10,6 @@ guiClass gui;
 
 boolean pauseTimer = false;
 
-boolean startUp = false;
-
 String IP;
 int hearts = 16;
 
@@ -33,8 +31,8 @@ void setup() {
 }
 
 void draw() {
-  gui.draw();
-  if (startUp) {
+  if (millis() > 7500) {
+    gui.draw();
     int i = 0;
     for (int y = 35; y < height - 10; y += 90) {
       for (int x = 50; x < width; x += 100) {
@@ -45,8 +43,9 @@ void draw() {
         i++;
       }
     }
+  } else {
+
   }
-  if (!startUp) {startUp = true;}
 }
 
 

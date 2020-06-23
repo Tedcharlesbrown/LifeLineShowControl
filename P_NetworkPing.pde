@@ -35,7 +35,7 @@ class networkPing {
   }
 
   void timer() {
-    if (millis() > stopwatch && !pauseTimer && startUp) {
+    if (millis() > stopwatch && !pauseTimer) {
       stopwatch += variableTimer * 1000;
       send();
     }
