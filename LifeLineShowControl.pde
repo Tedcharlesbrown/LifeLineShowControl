@@ -32,8 +32,13 @@ void setup() {
     ipField.get(i).settingsStart(i);
   }
 
+<<<<<<< Updated upstream
   Runnable r = new networkPing(10);
   new Thread(r).start();
+=======
+  //Runnable r = new networkPing(10);
+  //new Thread(ping.get(0)).start();
+>>>>>>> Stashed changes
 }
 
 void draw() {
@@ -89,7 +94,10 @@ void mousePressed() {
     idField.get(i).mousePressed();
     ipField.get(i).mousePressed();
   }
+<<<<<<< Updated upstream
   //ping.send();
+=======
+>>>>>>> Stashed changes
   //ping.get(0).find("192.168.0");
 }
 

@@ -6,8 +6,8 @@ class settingsClass {
 		try {
 			for (int i = 0; i < table.getRowCount(); i++) {
 				TableRow row = table.getRow(i);
-				idField.get(i).userID = row.getString("NAME");
-				ipField.get(i).userIP = row.getString("IP");
+				//idField.get(i).userID = row.getString("NAME");
+				//ipField.get(i).userIP = row.getString("IP");
 				//ping.get(i).variableTimer = row.getInt("TIME");
 			}
 		} catch (NullPointerException e) {
@@ -27,8 +27,8 @@ class settingsClass {
 
 	void get() {
 		for (int i = 0; i < table.getRowCount(); i++) {
-			table.setString(i, "NAME", idField.get(i).userID);
-			table.setString(i, "IP", ipField.get(i).userIP);
+			//table.setString(i, "NAME", idField.get(i).userID);
+			//table.setString(i, "IP", ipField.get(i).userIP);
 		}
 		saveTable(table, "LifeLineSettings.csv");
 	}

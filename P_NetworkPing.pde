@@ -11,8 +11,12 @@ public class networkPing implements Runnable {
   }
 
   public void run() {
+<<<<<<< Updated upstream
     send();
     println("test");
+=======
+    println(settings.ipList[this.index]);
+>>>>>>> Stashed changes
   }
 
   void send() {
@@ -61,7 +65,7 @@ public class networkPing implements Runnable {
     }
   }
 
-  void request(String tempIP) {
+  public void request(String tempIP) {
     if (this.IP != "IP ADDRESS") {
       this.IP = tempIP;
     }

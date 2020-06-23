@@ -7,6 +7,8 @@ class userInputField {
 	String userID = "";
 	String userIP = "";
 
+	String[] ipList = new String[16];
+
 	userInputField(String name, int index) {
 		this.name = name;
 		this.index = index;
@@ -49,9 +51,18 @@ class userInputField {
 	}
 
 	void fieldClicked() {
+<<<<<<< Updated upstream
 		if (dist(mouseX, this.y, this.x, this.y) < 90 / 2) {
 			if (dist(this.x, mouseY, this.x, this.y) < 15 / 2) {
 				this.clicked = true;
+=======
+		if (!pauseTimer) {
+			if (dist(mouseX, this.y, this.x, this.y) < 90 / 2) {
+				if (dist(this.x, mouseY, this.x, this.y) < 15 / 2) {
+					this.clicked = true;
+					//pauseTimer = true;
+				}
+>>>>>>> Stashed changes
 			}
 		}
 	}
@@ -76,6 +87,12 @@ class userInputField {
 				this.userIP += key;
 			} else if (key == ENTER || key == RETURN) {
 				this.clicked = false;
+<<<<<<< Updated upstream
+=======
+				pauseTimer = false;
+				ipList[this.index] = this.userIP;
+				new Thread(ping.get(this.index)).start();
+>>>>>>> Stashed changes
 				//ping.get(this.index).request(this.userIP);
 			}
 		}
@@ -84,6 +101,10 @@ class userInputField {
 	void settingsStart(int index) {
 		this.index = index;
 		if (this.userIP.length() > 0) {
+<<<<<<< Updated upstream
+=======
+			new Thread(ping.get(this.index)).start();
+>>>>>>> Stashed changes
 			//ping.get(this.index).request(this.userIP);
 		}
 
