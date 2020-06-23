@@ -10,6 +10,8 @@ guiClass gui;
 
 boolean pauseTimer = false;
 
+boolean startUp = false;
+
 String IP;
 int hearts = 16;
 
@@ -31,30 +33,29 @@ void setup() {
 }
 
 void draw() {
-  if (millis() > 7500) {
-    gui.draw();
-    int i = 0;
-    for (int y = 35; y < height - 10; y += 90) {
-      for (int x = 50; x < width; x += 100) {
-        heart.get(i).heartDraw(x , y);
-        idField.get(i).fieldDraw(x, y - 14);
-        ipField.get(i).fieldDraw(x, y + 1);
-        ping.get(i).timer();
-        i++;
-      }
+  gui.draw();
+  int i = 0;
+  for (int y = 35; y < height - 10; y += 90) {
+    for (int x = 50; x < width; x += 100) {
+      heart.get(i).heartDraw(x , y);
+      idField.get(i).fieldDraw(x, y - 14);
+      ipField.get(i).fieldDraw(x, y + 1);
+      ping.get(i).timer();
+      i++;
     }
-  } else {
-
   }
+  if (millis() < 1000) {
+    background(0);
+  }
+  startUp = true;
 }
-
-
 
 void mousePressed() {
   for (int i = 0; i < hearts; i++) {
     idField.get(i).mousePressed();
     ipField.get(i).mousePressed();
   }
+  ping.get(0).find("192.168.0");
 }
 
 void mouseReleased() {
