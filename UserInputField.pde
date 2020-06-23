@@ -49,12 +49,9 @@ class userInputField {
 	}
 
 	void fieldClicked() {
-		if (!pauseTimer) {
-			if (dist(mouseX, this.y, this.x, this.y) < 90 / 2) {
-				if (dist(this.x, mouseY, this.x, this.y) < 15 / 2) {
-					this.clicked = true;
-					pauseTimer = true;
-				}
+		if (dist(mouseX, this.y, this.x, this.y) < 90 / 2) {
+			if (dist(this.x, mouseY, this.x, this.y) < 15 / 2) {
+				this.clicked = true;
 			}
 		}
 	}
@@ -79,8 +76,7 @@ class userInputField {
 				this.userIP += key;
 			} else if (key == ENTER || key == RETURN) {
 				this.clicked = false;
-				pauseTimer = false;
-				ping.get(this.index).request(this.userIP);
+				//ping.get(this.index).request(this.userIP);
 			}
 		}
 	}
@@ -88,7 +84,7 @@ class userInputField {
 	void settingsStart(int index) {
 		this.index = index;
 		if (this.userIP.length() > 0) {
-			ping.get(this.index).request(this.userIP);
+			//ping.get(this.index).request(this.userIP);
 		}
 
 	}
