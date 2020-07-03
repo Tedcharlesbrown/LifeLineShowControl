@@ -2,7 +2,7 @@ class networkPing {
 
   String IP;
   int index;
-  int variableTimer = 10;
+  int variableTimer = 5;
   int stopwatch;
   networkPing(int tempIndex) {
     stopwatch = millis();
@@ -26,6 +26,8 @@ class networkPing {
         heart.get(this.index).reachable = 1;
         println("Exception:" + e.getMessage());
       }
+    } else {
+      //heart.get(this.index).reachable = 0;
     }
   }
 

@@ -1,7 +1,7 @@
-class settingsClass {
+class Settings {
 	Table table;
 
-	settingsClass() {
+	Settings() {
 		table = loadTable("LifeLineSettings.csv", "header");
 		try {
 			for (int i = 0; i < table.getRowCount(); i++) {

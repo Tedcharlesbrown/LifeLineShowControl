@@ -1,6 +1,6 @@
-class guiClass {
+class GUI {
 
-	guiClass() {
+	GUI() {
 
 	}
 

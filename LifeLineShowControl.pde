@@ -5,8 +5,10 @@ ArrayList<networkPing> ping = new ArrayList<networkPing>();
 ArrayList<userInputField> ipField = new ArrayList<userInputField>();
 ArrayList<userInputField> idField = new ArrayList<userInputField>();
 
-settingsClass settings;
-guiClass gui;
+userInputField timer;
+
+Settings settings;
+GUI gui;
 
 boolean pauseTimer = false;
 
@@ -18,7 +20,7 @@ int hearts = 16;
 void setup() {
   size(400, 400);
   frameRate(60);
-  gui = new guiClass();
+  gui = new GUI();
   for (int i = 0; i < hearts; i++) {
     heart.add(new heartContainer(i));
     ping.add(new networkPing(i));
@@ -26,7 +28,8 @@ void setup() {
     ipField.add(new userInputField("IP", i));
     heart.get(i).heartInit();
   }
-  settings = new settingsClass();
+  settings = new Settings();
+  timer = new userInputField("TIMER");
   for (int i = 0; i < hearts; i++) {
     ipField.get(i).settingsStart(i);
   }
@@ -38,12 +41,13 @@ void draw() {
   for (int y = 35; y < height - 10; y += 90) {
     for (int x = 50; x < width; x += 100) {
       heart.get(i).heartDraw(x , y);
-      idField.get(i).fieldDraw(x, y - 14);
-      ipField.get(i).fieldDraw(x, y + 1);
+      idField.get(i).draw(x, y - 14);
+      ipField.get(i).draw(x, y + 1);
       ping.get(i).timer();
       i++;
     }
   }
+  timer.drawTimer(width / 2, height - 35 / 2);
   if (millis() < 1000) {
     background(0);
   }
@@ -55,7 +59,8 @@ void mousePressed() {
     idField.get(i).mousePressed();
     ipField.get(i).mousePressed();
   }
-  ping.get(0).find("192.168.0");
+  timer.mousePressed();
+  //ping.get(0).find("192.168.0");
 }
 
 void mouseReleased() {
@@ -63,6 +68,7 @@ void mouseReleased() {
     idField.get(i).mouseReleased();
     ipField.get(i).mouseReleased();
   }
+  timer.mouseReleased();
 }
 void keyPressed() {
   settings.keyPressed();
@@ -70,4 +76,5 @@ void keyPressed() {
     idField.get(i).keyPressed();
     ipField.get(i).keyPressed();
   }
+  timer.keyPressed();
 }
