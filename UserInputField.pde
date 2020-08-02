@@ -73,17 +73,6 @@ class userInputField {
 		}
 	}
 
-	void fieldClicked() {
-		if (!pauseTimer) {
-			if (dist(mouseX, this.y, this.x, this.y) < 90 / 2) {
-				if (dist(this.x, mouseY, this.x, this.y) < 15 / 2) {
-					this.clicked = true;
-					pauseTimer = true;
-				}
-			}
-		}
-	}
-
 	void keyPressed() {
 		if (this.clicked) {
 			if (key == BACKSPACE || keyCode == 8) {
@@ -97,17 +86,37 @@ class userInputField {
 				} else {
 					this.userIP = this.userIP.substring(0, this.userIP.length() - 1);
 				}
-			} else if (keyCode >= 65 && keyCode <= 90) {
+				if (userTimer.length() == 0) {
+					return;
+				} else {
+					userTimer = userTimer.substring(0, userTimer.length() - 1);
+				}
+			} else if (keyCode >= 65 && keyCode <= 90) { //LETTERS
 				this.userID += key;
-				userTimer += key;
-			} else if ((keyCode >= 48 && keyCode <= 57) || (keyCode >= 96 && keyCode <= 105) || key == '.') {
+			} else if ((keyCode >= 48 && keyCode <= 57) || (keyCode >= 96 && keyCode <= 105) || key == '.') { //NUMBERS
 				this.userID += key;
 				this.userIP += key;
+				userTimer += key;
 			} else if (key == ENTER || key == RETURN) {
 				this.clicked = false;
 				pauseTimer = false;
-				ping.get(this.index).request(this.userIP);
+				if (this.name == "IP") {
+					ping.get(this.index).request(this.userIP);
+				}
+				if (this.name == "TIMER") {
+					if (userTimer.length() == 0) {
+						userTimer = "5";
+						return;
+					}
+					adjustTimer(userTimer);
+				}
 			}
+		}
+	}
+
+	void adjustTimer(String _userTime) {
+		for (int i = 0; i < hearts; i++) {
+			ping.get(i).variableTimer = int(_userTime);
 		}
 	}
 
@@ -120,7 +129,17 @@ class userInputField {
 	}
 
 	void mousePressed() {
-		fieldClicked();
+		if (!pauseTimer) {
+			if (dist(mouseX, this.y, this.x, this.y) < 90 / 2) {
+				if (dist(this.x, mouseY, this.x, this.y) < 15 / 2) {
+					this.clicked = true;
+					pauseTimer = true;
+					if (this.name == "TIMER") {
+						userTimer = "";
+					}
+				}
+			}
+		}
 		//println(this.address);
 	}
 

@@ -12,6 +12,7 @@ class networkPing {
 
   void send() {
     int timeOut = 1000;
+    gui.resetTimer = true;
     if (this.IP.length() > 0) {
       try {
         InetAddress inet = InetAddress.getByName(this.IP);
@@ -27,7 +28,7 @@ class networkPing {
         println("Exception:" + e.getMessage());
       }
     } else {
-      //heart.get(this.index).reachable = 0;
+      heart.get(this.index).reachable = 0;
     }
   }
 
