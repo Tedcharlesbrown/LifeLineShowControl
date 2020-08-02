@@ -8,7 +8,7 @@ class Settings {
 				TableRow row = table.getRow(i);
 				idField.get(i).userID = row.getString("NAME");
 				ipField.get(i).userIP = row.getString("IP");
-				//ping.get(i).variableTimer = row.getInt("TIME");
+				ping.get(i).variableTimer = row.getInt("TIME");
 			}
 		} catch (NullPointerException e) {
 			table = new Table();
@@ -29,6 +29,7 @@ class Settings {
 		for (int i = 0; i < table.getRowCount(); i++) {
 			table.setString(i, "NAME", idField.get(i).userID);
 			table.setString(i, "IP", ipField.get(i).userIP);
+			table.setString(i, "TIME", str(ping.get(i).variableTimer));
 		}
 		saveTable(table, "LifeLineSettings.csv");
 	}

@@ -1,4 +1,6 @@
 class GUI {
+	Boolean resetTimer = false;
+	int currentTime, oldTime = 0;
 
 	GUI() {
 
@@ -18,9 +20,22 @@ class GUI {
 
 	void timerDraw() {
 		if (!pauseTimer) {
+			if (resetTimer) {
+				oldTime = millis();
+				resetTimer = false;
+			}
+			currentTime = millis() - oldTime;
 			int timerLength = (ping.get(0).variableTimer) * 1000;
+
+			int offsetTimer = millis() % timerLength - currentTime;
+
 			fill(255);
-			rect(0, height - 35, map(millis() % timerLength + 50, 0, timerLength, -25, width), 35);
+
+			if (offsetTimer > 0) {
+				rect(0, height - 35, map(currentTime % timerLength, 0, timerLength - offsetTimer, 0, width), 35);
+			} else {
+				rect(0, height - 35, width, 35);
+			}
 		}
 	}
 }
